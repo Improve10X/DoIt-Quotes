@@ -7,13 +7,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.improve10x.doitquotes.databinding.QuotesItemBinding;
+
 public class QuoteViewHolder extends RecyclerView.ViewHolder {
 
-    ImageButton quoteImgBtn;
-    TextView titleTxt;
-    public QuoteViewHolder(@NonNull View itemView) {
-        super(itemView);
-        quoteImgBtn = itemView.findViewById(R.id.quote_img_btn);
-        titleTxt = itemView.findViewById(R.id.title_txt);
+    QuotesItemBinding binding;
+
+    public QuoteViewHolder(QuotesItemBinding quotesItemBinding) {
+        super(quotesItemBinding.getRoot());
+        binding = quotesItemBinding;
     }
 }
