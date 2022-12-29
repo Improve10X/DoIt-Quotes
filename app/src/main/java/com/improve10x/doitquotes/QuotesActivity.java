@@ -7,10 +7,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import com.improve10x.doitquotes.databinding.ActivityQuotesBinding;
+import com.improve10x.doitquotes.network.QuotesApi;
+import com.improve10x.doitquotes.network.QuotesService;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class QuotesActivity extends AppCompatActivity {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class QuotesActivity extends BaseActivity {
 
     private ActivityQuotesBinding binding;
     private ArrayList<Quote> quotes = new ArrayList<>();
@@ -27,6 +34,28 @@ public class QuotesActivity extends AppCompatActivity {
         setupQuotesRv();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fetchQuotes();
+    }
+
+    private void fetchQuotes() {
+        Call<List<Quote>> call = quotesService.fetchQuotes();
+        call.enqueue(new Callback<List<Quote>>() {
+            @Override
+            public void onResponse(Call<List<Quote>> call, Response<List<Quote>> response) {
+                List<Quote> quotes = response.body();
+                quotesAdapter.setData(quotes);
+            }
+
+            @Override
+            public void onFailure(Call<List<Quote>> call, Throwable t) {
+                showToast("Failed To Load");
+            }
+        });
+    }
+
     private void setAdapter() {
         quotesAdapter = new QuotesAdapter();
         quotesAdapter.setData(quotes);
@@ -34,10 +63,6 @@ public class QuotesActivity extends AppCompatActivity {
 
     private void createDummyData() {
         quotes = new ArrayList<>();
-        Quote quote = new Quote();
-        quote.titleTxt = "Success Quotes";
-        quote.imageUrl = "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/winston-churchill-success-quote-2-1523888270.jpg";
-        quotes.add(quote);
     }
 
     private void setupQuotesRv() {
