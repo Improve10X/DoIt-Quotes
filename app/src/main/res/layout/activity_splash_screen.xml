@@ -40,14 +40,18 @@
         android:layout_height="wrap_content"
         android:text="Powered by"
         android:textColor="#0D1649"
-        tools:layout_editor_absoluteX="182dp"
-        tools:layout_editor_absoluteY="663dp" />
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="@+id/imageView2" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="263dp"
-        android:layout_height="43dp"
-        app:srcCompat="@drawable/improve10x_logo"
-        tools:layout_editor_absoluteX="80dp"
-        tools:layout_editor_absoluteY="682dp" />
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:adjustViewBounds="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/improve10x_logo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
