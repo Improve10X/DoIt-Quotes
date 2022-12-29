@@ -6,39 +6,42 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+import com.improve10x.doitquotes.databinding.ActivityQuotesBinding;
+
 import java.util.ArrayList;
 
 public class QuotesActivity extends AppCompatActivity {
+
+    private ActivityQuotesBinding binding;
     private ArrayList<Quote> quotes = new ArrayList<>();
-    private RecyclerView quotesRv;
     private QuotesAdapter quotesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quotes);
+        binding = ActivityQuotesBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         getSupportActionBar().setTitle("Quotes");
-        setupViews();
-        showData();
+        createDummyData();
         setAdapter();
+        setupQuotesRv();
     }
 
     private void setAdapter() {
         quotesAdapter = new QuotesAdapter();
-        quotesRv.setAdapter(quotesAdapter);
         quotesAdapter.setData(quotes);
     }
 
-    private void showData() {
+    private void createDummyData() {
         quotes = new ArrayList<>();
         Quote quote = new Quote();
         quote.titleTxt = "Success Quotes";
-        quote.imageUrl = "https://www.shutterstock.com/shutterstock/photos/1300853386/display_1500/stock-photo-inspirational-quotes-for-life-and-success-1300853386.jpg";
+        quote.imageUrl = "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/winston-churchill-success-quote-2-1523888270.jpg";
         quotes.add(quote);
     }
 
-    private void setupViews() {
-      quotesRv = findViewById(R.id.quotes_rv);
-      quotesRv.setLayoutManager(new LinearLayoutManager(this));
+    private void setupQuotesRv() {
+      binding.quotesRv.setLayoutManager(new LinearLayoutManager(this));
+      binding.quotesRv.setAdapter(quotesAdapter);
     }
 }

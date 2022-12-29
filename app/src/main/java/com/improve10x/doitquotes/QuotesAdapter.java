@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.improve10x.doitquotes.databinding.QuotesItemBinding;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -18,22 +19,23 @@ public class QuotesAdapter extends RecyclerView.Adapter<QuoteViewHolder> {
 
     void setData(List<Quote> quoteList) {
         quotes = quoteList;
+        notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public QuoteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.quotes_item, parent, false);
-        QuoteViewHolder quoteViewHolder = new QuoteViewHolder(view);
+        QuotesItemBinding binding = QuotesItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        QuoteViewHolder quoteViewHolder = new QuoteViewHolder(binding);
         return quoteViewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull QuoteViewHolder holder, int position) {
         Quote quote = quotes.get(position);
-        holder.titleTxt.setText(quote.titleTxt);
+        holder.binding.titleTxt.setText(quote.titleTxt);
         if (quote.imageUrl != null && quote.imageUrl.isEmpty() == false) {
-            Picasso.get().load(quote.imageUrl).into(holder.quoteImgBtn);
+            Picasso.get().load(quote.imageUrl).into(holder.binding.quoteImgBtn);
         }
     }
 
