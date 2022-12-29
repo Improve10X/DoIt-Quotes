@@ -9,6 +9,7 @@ import android.os.Bundle;
 import java.util.ArrayList;
 
 public class QuotesActivity extends AppCompatActivity {
+
     private ArrayList<Quote> quotes = new ArrayList<>();
     private RecyclerView quotesRv;
     private QuotesAdapter quotesAdapter;
@@ -33,7 +34,7 @@ public class QuotesActivity extends AppCompatActivity {
         quotes = new ArrayList<>();
         Quote quote = new Quote();
         quote.titleTxt = "Success Quotes";
-        quote.imageUrl = "https://www.shutterstock.com/shutterstock/photos/1300853386/display_1500/stock-photo-inspirational-quotes-for-life-and-success-1300853386.jpg";
+        quote.imageUrl = "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/winston-churchill-success-quote-2-1523888270.jpg";
         quotes.add(quote);
     }
 
