@@ -1,4 +1,4 @@
-package com.improve10x.doitquotes;
+package com.improve10x.doitquotes.category;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;

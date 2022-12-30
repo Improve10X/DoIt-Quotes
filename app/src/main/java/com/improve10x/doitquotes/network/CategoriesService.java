@@ -1,7 +1,7 @@
 package com.improve10x.doitquotes.network;
 
-import com.improve10x.doitquotes.Constants;
-import com.improve10x.doitquotes.Category;
+import com.improve10x.doitquotes.category.Constants;
+import com.improve10x.doitquotes.category.Category;
 
 import java.util.List;
 

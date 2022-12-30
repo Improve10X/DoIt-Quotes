@@ -1,6 +1,6 @@
 package com.improve10x.doitquotes.network;
 
-import com.improve10x.doitquotes.Constants;
+import com.improve10x.doitquotes.category.Constants;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

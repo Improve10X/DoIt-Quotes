@@ -1,4 +1,4 @@
-package com.improve10x.doitquotes;
+package com.improve10x.doitquotes.category;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,14 +10,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.improve10x.doitquotes.databinding.ActivityCategoriesBinding;
+import com.improve10x.doitquotes.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class CategoriesActivity extends BaseActivity {
 

@@ -4,11 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class QuotationsActivity extends AppCompatActivity {
+import com.improve10x.doitquotes.databinding.ActivityQuotationsBinding;
+
+import java.util.ArrayList;
+
+public class QuotationsActivity extends BaseActivity {
+
+    public ArrayList<Quote> quotes = new ArrayList<>();
+    public ActivityQuotationsBinding binding;
+    public QuotationsAdapter quotationsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quotations);
+        binding = ActivityQuotationsBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        getSupportActionBar().setTitle("Quotations");
     }
 }

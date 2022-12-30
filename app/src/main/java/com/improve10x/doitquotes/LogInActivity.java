@@ -14,6 +14,7 @@ import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.improve10x.doitquotes.category.CategoriesActivity;
 
 import java.util.Arrays;
 import java.util.List;
