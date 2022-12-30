@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.improve10x.doitquotes.databinding.QuotesItemBinding;
+import com.improve10x.doitquotes.databinding.CategoriesItemBinding;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -23,7 +23,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoryViewHolder> 
     @NonNull
     @Override
     public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        QuotesItemBinding binding = QuotesItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        CategoriesItemBinding binding = CategoriesItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         CategoryViewHolder quoteViewHolder = new CategoryViewHolder(binding);
         return quoteViewHolder;
     }

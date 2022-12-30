@@ -2,13 +2,13 @@ package com.improve10x.doitquotes;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.improve10x.doitquotes.databinding.QuotesItemBinding;
+import com.improve10x.doitquotes.databinding.CategoriesItemBinding;
 
 public class CategoryViewHolder extends RecyclerView.ViewHolder {
 
-    QuotesItemBinding binding;
+    CategoriesItemBinding binding;
 
-    public CategoryViewHolder(QuotesItemBinding categoriesItemBinding) {
+    public CategoryViewHolder(CategoriesItemBinding categoriesItemBinding) {
         super(categoriesItemBinding.getRoot());
         binding = categoriesItemBinding;
     }

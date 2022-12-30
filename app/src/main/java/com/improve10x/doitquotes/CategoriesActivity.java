@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 
-import com.improve10x.doitquotes.databinding.ActivityQuotesBinding;
+import com.improve10x.doitquotes.databinding.ActivityCategoriesBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,14 +15,14 @@ import retrofit2.Response;
 
 public class CategoriesActivity extends BaseActivity {
 
-    private ActivityQuotesBinding binding;
+    private ActivityCategoriesBinding binding;
     private ArrayList<Category> categories = new ArrayList<>();
     private CategoriesAdapter categoriesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityQuotesBinding.inflate(getLayoutInflater());
+        binding = ActivityCategoriesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         getSupportActionBar().setTitle("Categories");
         createDummyData();
