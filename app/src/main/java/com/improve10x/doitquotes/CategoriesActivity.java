@@ -1,9 +1,15 @@
 package com.improve10x.doitquotes;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.improve10x.doitquotes.databinding.ActivityCategoriesBinding;
 
 import java.util.ArrayList;
@@ -37,19 +43,21 @@ public class CategoriesActivity extends BaseActivity {
     }
 
     private void fetchQuotes() {
-        Call<List<Category>> call = quotesService.fetchQuotes();
-        call.enqueue(new Callback<List<Category>>() {
-            @Override
-            public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
-                List<Category> quotes = response.body();
-                categoriesAdapter.setData(quotes);
-            }
-
-            @Override
-            public void onFailure(Call<List<Category>> call, Throwable t) {
-                showToast("Failed To Load");
-            }
-        });
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("categories")
+                .orderBy("categoryId")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            List<Category> categories = task.getResult().toObjects(Category.class);
+                            categoriesAdapter.setData(categories);
+                        } else {
+                            Toast.makeText(CategoriesActivity.this, "Failed to Load", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
     private void setAdapter() {
