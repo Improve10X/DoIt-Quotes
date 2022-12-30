@@ -5,12 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.improve10x.doitquotes.network.QuotesApi;
-import com.improve10x.doitquotes.network.QuotesService;
+import com.improve10x.doitquotes.network.CategoriesApi;
+import com.improve10x.doitquotes.network.CategoriesService;
 
 public class BaseActivity extends AppCompatActivity {
 
-    protected QuotesService quotesService;
+    protected CategoriesService quotesService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     private void setupApiService() {
-        QuotesApi quotesApi = new QuotesApi();
+        CategoriesApi quotesApi = new CategoriesApi();
         quotesService = quotesApi.createQuoteService();
     }
 
