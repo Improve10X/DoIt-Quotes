@@ -1,11 +1,7 @@
 package com.improve10x.doitquotes;
 
-import com.google.gson.annotations.SerializedName;
-
 public class Category {
-
-    @SerializedName("_id")
-    String id;
+    String categoryId;
+    String title;
     String imageUrl;
-    String titleTxt;
 }
