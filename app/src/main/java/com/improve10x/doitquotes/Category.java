@@ -1,7 +1,9 @@
 package com.improve10x.doitquotes;
 
-public class Category {
-    String categoryId;
-    String title;
-    String imageUrl;
+import java.io.Serializable;
+
+public class Category implements Serializable {
+    public String categoryId;
+    public String title;
+    public String imageUrl;
 }
