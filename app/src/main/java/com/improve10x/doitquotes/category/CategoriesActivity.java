@@ -11,6 +11,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.improve10x.doitquotes.BaseActivity;
+import com.improve10x.doitquotes.databinding.ActivityCategoriesBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +67,7 @@ public class CategoriesActivity extends BaseActivity {
     }
 
     private void setupQuotesRv() {
-      binding.quotesRv.setLayoutManager(new LinearLayoutManager(this));
-      binding.quotesRv.setAdapter(categoriesAdapter);
+      binding.categoriesRv.setLayoutManager(new LinearLayoutManager(this));
+      binding.categoriesRv.setAdapter(categoriesAdapter);
     }
 }
