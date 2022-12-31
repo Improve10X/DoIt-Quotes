@@ -1,6 +1,5 @@
 package com.improve10x.doitquotes;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -34,7 +33,7 @@ public class QuotationsAdapter extends RecyclerView.Adapter<QuoteViewHolder> {
       if (quote.imageUrl != null && quote.imageUrl.isEmpty() == false) {
           Picasso.get().load(quote.imageUrl).into(holder.binding.imageImg);
       }
-      holder.binding.quoteTxt.setText(quote.quoteTxt);
+      holder.binding.quoteTitle.setText(quote.quoteTitle);
       holder.binding.auotherNameTxt.setText(quote.authorName);
     }
 
