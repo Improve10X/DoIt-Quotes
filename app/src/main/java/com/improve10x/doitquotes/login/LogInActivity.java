@@ -1,4 +1,4 @@
-package com.improve10x.doitquotes;
+package com.improve10x.doitquotes.login;
 
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -14,6 +14,7 @@ import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.improve10x.doitquotes.R;
 import com.improve10x.doitquotes.category.CategoriesActivity;
 
 import java.util.Arrays;

@@ -5,14 +5,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.improve10x.doitquotes.BaseActivity;
-import com.improve10x.doitquotes.QuotationsActivity;
+import com.improve10x.doitquotes.network.BaseActivity;
+import com.improve10x.doitquotes.quotation.QuotationsActivity;
 import com.improve10x.doitquotes.databinding.ActivityCategoriesBinding;
 
 import java.util.ArrayList;
@@ -57,9 +56,9 @@ public class CategoriesActivity extends BaseActivity {
     private void setAdapter() {
         categoriesAdapter = new CategoriesAdapter();
         categoriesAdapter.setData(categories);
-        categoriesAdapter.setOnItemListener(quote -> {
+        categoriesAdapter.setOnItemListener(category -> {
             Intent intent = new Intent(this, QuotationsActivity.class);
-            intent.putExtra(Constants.QUOTES_END_POINT, quote);
+            intent.putExtra(Constants.EXTRA_CATEGORY, category);
             startActivity(intent);
         });
     }

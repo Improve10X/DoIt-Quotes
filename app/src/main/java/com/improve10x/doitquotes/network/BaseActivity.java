@@ -1,10 +1,11 @@
-package com.improve10x.doitquotes;
+package com.improve10x.doitquotes.network;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.improve10x.doitquotes.R;
 import com.improve10x.doitquotes.network.CategoriesApi;
 import com.improve10x.doitquotes.network.CategoriesService;
 

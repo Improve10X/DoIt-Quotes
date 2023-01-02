@@ -1,8 +1,8 @@
-package com.improve10x.doitquotes;
+package com.improve10x.doitquotes.quotation;
 
 import java.io.Serializable;
 
-public class Quote implements Serializable {
+public class Quotation implements Serializable {
     public String id;
     public String imageUrl;
     public String quoteTitle;

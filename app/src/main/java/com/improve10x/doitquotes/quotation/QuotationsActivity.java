@@ -1,9 +1,7 @@
-package com.improve10x.doitquotes;
+package com.improve10x.doitquotes.quotation;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,14 +11,16 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.improve10x.doitquotes.network.BaseActivity;
 import com.improve10x.doitquotes.databinding.ActivityQuotationsBinding;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class QuotationsActivity extends BaseActivity {
 
-    public ArrayList<Quote> quotes = new ArrayList<>();
+    public ArrayList<Quotation> quotes = new ArrayList<>();
     public ActivityQuotationsBinding binding;
     public QuotationsAdapter quotationsAdapter;
 
@@ -43,7 +43,7 @@ public class QuotationsActivity extends BaseActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            List<Quote> quotes = task.getResult().toObjects(Quote.class);
+                            List<Quotation> quotes = task.getResult().toObjects(Quotation.class);
                             quotationsAdapter.setData(quotes);
                         } else {
                             Toast.makeText(QuotationsActivity.this, "Failed to Load", Toast.LENGTH_SHORT).show();
@@ -51,6 +51,7 @@ public class QuotationsActivity extends BaseActivity {
                     }
                 });
     }
+
 
     private void setupQuotationRv() {
         binding.quotationsRv.setLayoutManager(new LinearLayoutManager(this));
@@ -60,5 +61,6 @@ public class QuotationsActivity extends BaseActivity {
     private void setupQuotationAdapter() {
         quotationsAdapter = new QuotationsAdapter();
         quotationsAdapter.setData(quotes);
+
     }
 }

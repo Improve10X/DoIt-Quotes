@@ -1,6 +1,5 @@
 package com.improve10x.doitquotes.category;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -8,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.improve10x.doitquotes.OnItemActionListener;
-import com.improve10x.doitquotes.QuotationsActivity;
 import com.improve10x.doitquotes.databinding.CategoriesItemBinding;
 import com.squareup.picasso.Picasso;
 
@@ -39,12 +37,12 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoryViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
-        Category quote = categories.get(position);
-        if (quote.imageUrl != null && quote.imageUrl.isEmpty() == false) {
-            Picasso.get().load(quote.imageUrl).into(holder.binding.quoteImageImg);
-            holder.binding.titleTxt.setText(quote.title);
+        Category category = categories.get(position);
+        if (category.imageUrl != null && category.imageUrl.isEmpty() == false) {
+            Picasso.get().load(category.imageUrl).into(holder.binding.quoteImageImg);
+            holder.binding.titleTxt.setText(category.title);
             holder.itemView.setOnClickListener(view -> {
-
+            listener.onItemClicked(category);
             });
         }
     }
