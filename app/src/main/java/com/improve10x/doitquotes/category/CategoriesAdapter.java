@@ -31,9 +31,9 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoryViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
         Category quote = categories.get(position);
-        holder.binding.titleTxt.setText(quote.title);
         if (quote.imageUrl != null && quote.imageUrl.isEmpty() == false) {
             Picasso.get().load(quote.imageUrl).into(holder.binding.quoteImgBtn);
+            holder.binding.titleTxt.setText(quote.title);
         }
     }
 

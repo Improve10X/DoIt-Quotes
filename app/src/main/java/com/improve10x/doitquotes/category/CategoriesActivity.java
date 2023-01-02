@@ -3,6 +3,7 @@ package com.improve10x.doitquotes.category;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -11,6 +12,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.improve10x.doitquotes.BaseActivity;
+import com.improve10x.doitquotes.QuotationsActivity;
 import com.improve10x.doitquotes.databinding.ActivityCategoriesBinding;
 
 import java.util.ArrayList;
@@ -31,12 +33,12 @@ public class CategoriesActivity extends BaseActivity {
         createDummyData();
         setAdapter();
         setupQuotesRv();
+        fetchQuotes();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        fetchQuotes();
+    private void handleIntent() {
+        Intent intent = new Intent(this, QuotationsActivity.class);
+        startActivity(intent);
     }
 
     private void fetchQuotes() {
