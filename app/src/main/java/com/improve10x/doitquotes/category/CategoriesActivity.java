@@ -36,11 +36,6 @@ public class CategoriesActivity extends BaseActivity {
         fetchQuotes();
     }
 
-    private void handleIntent() {
-        Intent intent = new Intent(this, QuotationsActivity.class);
-        startActivity(intent);
-    }
-
     private void fetchQuotes() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("categories")
@@ -53,7 +48,7 @@ public class CategoriesActivity extends BaseActivity {
                             List<Category> categories = task.getResult().toObjects(Category.class);
                             categoriesAdapter.setData(categories);
                         } else {
-                            Toast.makeText(CategoriesActivity.this, "Failed to Load", Toast.LENGTH_SHORT).show();
+                            showToast("Failed to load");
                         }
                     }
                 });
@@ -62,6 +57,11 @@ public class CategoriesActivity extends BaseActivity {
     private void setAdapter() {
         categoriesAdapter = new CategoriesAdapter();
         categoriesAdapter.setData(categories);
+        categoriesAdapter.setOnItemListener(quote -> {
+            Intent intent = new Intent(this, QuotationsActivity.class);
+            intent.putExtra(Constants.QUOTES_END_POINT, quote);
+            startActivity(intent);
+        });
     }
 
     private void createDummyData() {
