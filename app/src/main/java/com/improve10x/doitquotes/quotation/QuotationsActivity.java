@@ -1,7 +1,9 @@
 package com.improve10x.doitquotes.quotation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -11,6 +13,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.improve10x.doitquotes.Quote;
+import com.improve10x.doitquotes.QuotesDetailsActivity;
+import com.improve10x.doitquotes.category.Category;
+import com.improve10x.doitquotes.category.Constants;
 import com.improve10x.doitquotes.network.BaseActivity;
 import com.improve10x.doitquotes.databinding.ActivityQuotationsBinding;
 import com.squareup.picasso.Picasso;
@@ -23,13 +29,18 @@ public class QuotationsActivity extends BaseActivity {
     public ArrayList<Quotation> quotes = new ArrayList<>();
     public ActivityQuotationsBinding binding;
     public QuotationsAdapter quotationsAdapter;
+    public Category category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityQuotationsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        Intent intent = getIntent();
         getSupportActionBar().setTitle("Quotations");
+        if(intent.hasExtra(Constants.EXTRA_CATEGORY)){
+          category =(Category)  intent.getSerializableExtra(Constants.EXTRA_CATEGORY);
+        }
         setupQuotationAdapter();
         setupQuotationRv();
         fetchQuotations();
@@ -52,7 +63,6 @@ public class QuotationsActivity extends BaseActivity {
                 });
     }
 
-
     private void setupQuotationRv() {
         binding.quotationsRv.setLayoutManager(new LinearLayoutManager(this));
         binding.quotationsRv.setAdapter(quotationsAdapter);
@@ -61,6 +71,5 @@ public class QuotationsActivity extends BaseActivity {
     private void setupQuotationAdapter() {
         quotationsAdapter = new QuotationsAdapter();
         quotationsAdapter.setData(quotes);
-
     }
 }

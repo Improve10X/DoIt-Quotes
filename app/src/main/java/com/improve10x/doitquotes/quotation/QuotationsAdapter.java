@@ -40,12 +40,12 @@ public class QuotationsAdapter extends RecyclerView.Adapter<QuotationViewHolder>
           holder.binding.titleLayout.setVisibility(View.VISIBLE);
           holder.binding.quoteTitle.setText(quote.quoteTitle);
           holder.binding.auotherNameTxt.setText(quote.authorName);
-
       }
     }
 
     @Override
     public int getItemCount() {
+
         return quotes.size();
     }
 }
