@@ -1,4 +1,4 @@
-package com.improve10x.doitquotes;
+package com.improve10x.doitquotes.category;
 
 import com.improve10x.doitquotes.category.Category;
 import com.improve10x.doitquotes.quotation.Quotation;

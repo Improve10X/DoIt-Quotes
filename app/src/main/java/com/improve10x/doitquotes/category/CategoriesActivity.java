@@ -57,10 +57,14 @@ public class CategoriesActivity extends BaseActivity {
         categoriesAdapter = new CategoriesAdapter();
         categoriesAdapter.setData(categories);
         categoriesAdapter.setOnItemListener(category -> {
-            Intent intent = new Intent(this, QuotationsActivity.class);
-            intent.putExtra(Constants.EXTRA_CATEGORY, category);
-            startActivity(intent);
+            sendData(category);
         });
+    }
+
+    private void sendData(Category category) {
+        Intent intent = new Intent(this, QuotationsActivity.class);
+        intent.putExtra(Constants.EXTRA_CATEGORY, category);
+        startActivity(intent);
     }
 
     private void createDummyData() {

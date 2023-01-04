@@ -2,8 +2,6 @@ package com.improve10x.doitquotes.quotation;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,23 +11,21 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.improve10x.doitquotes.Quote;
 import com.improve10x.doitquotes.QuotesDetailsActivity;
 import com.improve10x.doitquotes.category.Category;
 import com.improve10x.doitquotes.category.Constants;
 import com.improve10x.doitquotes.network.BaseActivity;
 import com.improve10x.doitquotes.databinding.ActivityQuotationsBinding;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class QuotationsActivity extends BaseActivity {
 
-    public ArrayList<Quotation> quotes = new ArrayList<>();
-    public ActivityQuotationsBinding binding;
-    public QuotationsAdapter quotationsAdapter;
-    public Category category;
+    private ArrayList<Quotation> quotes = new ArrayList<>();
+    private ActivityQuotationsBinding binding;
+    private QuotationsAdapter quotationsAdapter;
+    private Category category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +34,8 @@ public class QuotationsActivity extends BaseActivity {
         setContentView(binding.getRoot());
         Intent intent = getIntent();
         getSupportActionBar().setTitle("Quotations");
-        if(intent.hasExtra(Constants.EXTRA_CATEGORY)){
-          category =(Category)  intent.getSerializableExtra(Constants.EXTRA_CATEGORY);
+        if (intent.hasExtra(Constants.EXTRA_CATEGORY)) {
+            category = (Category) intent.getSerializableExtra(Constants.EXTRA_CATEGORY);
         }
         setupQuotationAdapter();
         setupQuotationRv();
@@ -71,5 +67,17 @@ public class QuotationsActivity extends BaseActivity {
     private void setupQuotationAdapter() {
         quotationsAdapter = new QuotationsAdapter();
         quotationsAdapter.setData(quotes);
+        quotationsAdapter.setOnItemListener(new OnItemActionListener() {
+            @Override
+            public void onItemClicked(Quotation quotation) {
+                setupQuotes();
+            }
+        });
+    }
+
+    private void setupQuotes() {
+        Intent intent = new Intent(this, QuotesDetailsActivity.class);
+        intent.putExtra(Constants.QUOTES_END_POINT, quotes);
+        startActivity(intent);
     }
 }

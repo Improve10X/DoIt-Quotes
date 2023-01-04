@@ -15,6 +15,12 @@ import java.util.List;
 public class QuotationsAdapter extends RecyclerView.Adapter<QuotationViewHolder> {
 
     private List<Quotation> quotes;
+
+    private OnItemActionListener listener;
+
+    void setOnItemListener(OnItemActionListener onItemActionListener) {
+        listener = onItemActionListener;
+    }
     void setData(List<Quotation> quoteList) {
         quotes = quoteList;
         notifyDataSetChanged();
@@ -30,22 +36,24 @@ public class QuotationsAdapter extends RecyclerView.Adapter<QuotationViewHolder>
 
     @Override
     public void onBindViewHolder(@NonNull QuotationViewHolder holder, int position) {
-      Quotation quote = quotes.get(position);
-      if (quote.imageUrl != null && quote.imageUrl.isEmpty() == false) {
+      Quotation quotation = quotes.get(position);
+      if (quotation.imageUrl != null && quotation.imageUrl.isEmpty() == false) {
           holder.binding.imageImg.setVisibility(View.VISIBLE);
           holder.binding.titleLayout.setVisibility(View.GONE);
-          Picasso.get().load(quote.imageUrl).into(holder.binding.imageImg);
+          Picasso.get().load(quotation.imageUrl).into(holder.binding.imageImg);
+          holder.itemView.setOnClickListener(view -> {
+              listener.onItemClicked(quotation);
+          });
       } else {
           holder.binding.imageImg.setVisibility(View.GONE);
           holder.binding.titleLayout.setVisibility(View.VISIBLE);
-          holder.binding.quoteTitle.setText(quote.quoteTitle);
-          holder.binding.auotherNameTxt.setText(quote.authorName);
+          holder.binding.quoteTitle.setText(quotation.quoteTitle);
+          holder.binding.auotherNameTxt.setText(quotation.authorName);
       }
     }
 
     @Override
     public int getItemCount() {
-
         return quotes.size();
     }
 }
