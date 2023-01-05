@@ -35,13 +35,11 @@ public class QuotesDetailsActivity extends BaseActivity {
         binding.quoteTitleTxt.setText(quotation.quoteTitle);
         if (quotation.numberOfLikes !=null && quotation.numberOfLikes.isEmpty() == false) {
             binding.numberOfLikesTxt.setText(quotation.numberOfLikes);
-            binding.authorNameTxt.setVisibility(View.VISIBLE);
-            binding.quoteTitleTxt.setVisibility(View.INVISIBLE);
             binding.imageImg.setVisibility(View.INVISIBLE);
+            binding.quoteTitleLayout.setVisibility(View.VISIBLE);
         } else {
-            binding.imageImg.setVisibility(View.VISIBLE);
-            binding.authorNameTxt.setVisibility(View.INVISIBLE);
-            binding.quoteTitleTxt.setVisibility(View.INVISIBLE);
+            binding.quoteTitleLayout.setVisibility(View.VISIBLE);
+            binding.authorNameTxt.setVisibility(View.VISIBLE);
         }
     }
 }
