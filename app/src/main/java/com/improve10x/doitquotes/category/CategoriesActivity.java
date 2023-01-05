@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,6 +23,7 @@ public class CategoriesActivity extends BaseActivity {
     private ActivityCategoriesBinding binding;
     private ArrayList<Category> categories = new ArrayList<>();
     private CategoriesAdapter categoriesAdapter;
+    private ImageView quoteImgImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

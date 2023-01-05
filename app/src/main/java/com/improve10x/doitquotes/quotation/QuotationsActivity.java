@@ -14,8 +14,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.improve10x.doitquotes.QuotesDetailsActivity;
 import com.improve10x.doitquotes.category.Category;
 import com.improve10x.doitquotes.category.Constants;
-import com.improve10x.doitquotes.network.BaseActivity;
 import com.improve10x.doitquotes.databinding.ActivityQuotationsBinding;
+import com.improve10x.doitquotes.network.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +41,7 @@ public class QuotationsActivity extends BaseActivity {
         setupQuotationRv();
         fetchQuotations();
     }
+
 
     private void fetchQuotations() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -70,14 +71,14 @@ public class QuotationsActivity extends BaseActivity {
         quotationsAdapter.setOnItemListener(new OnItemActionListener() {
             @Override
             public void onItemClicked(Quotation quotation) {
-                setupQuotes();
+                setupQuotes(quotation);
             }
         });
     }
 
-    private void setupQuotes() {
+    private void setupQuotes(Quotation quotation) {
         Intent intent = new Intent(this, QuotesDetailsActivity.class);
-        intent.putExtra(Constants.QUOTES_END_POINT, quotes);
+        intent.putExtra(Constants.KEY_QUOTE, quotation);
         startActivity(intent);
     }
 }
