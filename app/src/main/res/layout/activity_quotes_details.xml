@@ -105,10 +105,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="@+id/share_image_img"
-            app:layout_constraintTop_toTopOf="@+id/share_image_img"
-            app:layout_constraintVertical_bias="0.476"
-            tools:layout_editor_absoluteX="172dp" />
+            app:layout_constraintBottom_toBottomOf="@+id/like_image_img"
+            app:layout_constraintEnd_toEndOf="@+id/image_img"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/quote_title_txt"
+            app:layout_constraintVertical_bias="0.833" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
