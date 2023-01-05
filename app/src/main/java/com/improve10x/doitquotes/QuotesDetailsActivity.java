@@ -30,7 +30,7 @@ public class QuotesDetailsActivity extends BaseActivity {
     }
 
     private void showData() {
-            Picasso.get().load(quotation.imageUrl).into(binding.imageImg);
-            binding.numberOfLikesTxt.setText(quotation.numberOfLikes);
+        Picasso.get().load(quotation.imageUrl).into(binding.imageImg);
+        binding.numberOfLikesTxt.setText(quotation.numberOfLikes);
     }
 }
