@@ -11,4 +11,6 @@ public class Quotation implements Serializable {
     public String numberOfLikes;
     public String likeButton;
     public String shareButton;
+    public String rightArrow;
+    public String leftArrow;
 }

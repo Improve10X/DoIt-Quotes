@@ -10,7 +10,7 @@ import retrofit2.http.GET;
 
 public interface CategoriesService {
 
-    @GET(Constants.QUOTES_END_POINT)
+    @GET(Constants.KEY_QUOTE)
     Call<List<Category>> fetchQuotes();
 
 
