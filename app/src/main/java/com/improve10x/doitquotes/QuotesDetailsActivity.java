@@ -15,7 +15,6 @@ public class QuotesDetailsActivity extends BaseActivity {
     public ActivityQuotesDetailsBinding binding;
     private ImageView imageImg;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
