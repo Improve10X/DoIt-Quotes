@@ -50,6 +50,7 @@ public class QuotationsAdapter extends RecyclerView.Adapter<QuotationViewHolder>
       }
         holder.binding.quoteTitle.setText(quotation.quoteTitle);
         holder.binding.auothorNameTxt.setText(quotation.authorName);
+        holder.binding.numberOfLikesTxt.setText(quotation.numberOfLikes);
         holder.itemView.setOnClickListener(view -> {
             listener.onItemClicked(quotation);
         });
