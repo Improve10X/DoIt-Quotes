@@ -57,7 +57,6 @@ public class QuotationsAdapter extends RecyclerView.Adapter<QuotationViewHolder>
         if (quotation.numberOfLikes !=null && quotation.numberOfLikes.isEmpty() == false) {
             holder.binding.numberOfLikesTxt.setText(quotation.numberOfLikes);
         }
-
     }
 
     @Override
