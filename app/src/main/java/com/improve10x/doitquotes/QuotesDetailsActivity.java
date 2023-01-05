@@ -31,6 +31,8 @@ public class QuotesDetailsActivity extends BaseActivity {
 
     private void showData() {
         Picasso.get().load(quotation.imageUrl).into(binding.imageImg);
-        binding.numberOfLikesTxt.setText(quotation.numberOfLikes);
+        if (quotation.numberOfLikes !=null && quotation.numberOfLikes.isEmpty() == false) {
+            binding.numberOfLikesTxt.setText(quotation.numberOfLikes);
+        }
     }
 }
