@@ -39,10 +39,10 @@ public class QuotationsAdapter extends RecyclerView.Adapter<QuotationViewHolder>
       Quotation quotation = quotes.get(position);
       if (quotation.imageUrl != null && quotation.imageUrl.isEmpty() == false) {
           holder.binding.imageImg.setVisibility(View.VISIBLE);
-          holder.binding.titleLayout.setVisibility(View.GONE);
+          holder.binding.titleLayout.setVisibility(View.INVISIBLE);
           Picasso.get().load(quotation.imageUrl).into(holder.binding.imageImg);
       } else {
-          holder.binding.imageImg.setVisibility(View.GONE);
+          holder.binding.imageImg.setVisibility(View.INVISIBLE);
           holder.binding.titleLayout.setVisibility(View.VISIBLE);
           holder.itemView.setOnClickListener(view -> {
               listener.onItemClicked(quotation);
@@ -57,7 +57,6 @@ public class QuotationsAdapter extends RecyclerView.Adapter<QuotationViewHolder>
             holder.binding.numberOfLikesTxt.setText(quotation.numberOfLikes);
         }
     }
-
 
     @Override
     public int getItemCount() {
