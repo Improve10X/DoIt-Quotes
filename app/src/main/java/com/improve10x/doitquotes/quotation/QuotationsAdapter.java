@@ -44,21 +44,21 @@ public class QuotationsAdapter extends RecyclerView.Adapter<QuotationViewHolder>
       } else {
           holder.binding.imageImg.setVisibility(View.INVISIBLE);
           holder.binding.titleLayout.setVisibility(View.VISIBLE);
+          holder.binding.quoteTitle.setText(quotation.quoteTitle);
           holder.itemView.setOnClickListener(view -> {
               listener.onItemClicked(quotation);
           });
       }
         holder.binding.quoteTitle.setText(quotation.quoteTitle);
         holder.binding.auothorNameTxt.setText(quotation.authorName);
-        holder.binding.numberOfLikesTxt.setText(quotation.numberOfLikes);
         holder.itemView.setOnClickListener(view -> {
             listener.onItemClicked(quotation);
         });
         if (quotation.numberOfLikes !=null && quotation.numberOfLikes.isEmpty() == false) {
             holder.binding.numberOfLikesTxt.setText(quotation.numberOfLikes);
         }
-    }
 
+    }
 
     @Override
     public int getItemCount() {

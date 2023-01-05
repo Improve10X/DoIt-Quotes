@@ -2,7 +2,8 @@ package com.improve10x.doitquotes;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.improve10x.doitquotes.category.Constants;
 import com.improve10x.doitquotes.databinding.ActivityQuotesDetailsBinding;
@@ -31,6 +32,8 @@ public class QuotesDetailsActivity extends BaseActivity {
 
     private void showData() {
         Picasso.get().load(quotation.imageUrl).into(binding.imageImg);
-        binding.numberOfLikesTxt.setText(quotation.numberOfLikes);
+        if (quotation.numberOfLikes != null && quotation.numberOfLikes.isEmpty() == false) {
+            binding.numberOfLikesTxt.setText(quotation.numberOfLikes);
+        }
     }
 }
