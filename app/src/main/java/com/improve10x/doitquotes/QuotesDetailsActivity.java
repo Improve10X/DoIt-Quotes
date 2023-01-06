@@ -2,7 +2,10 @@ package com.improve10x.doitquotes;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+
+import androidx.annotation.NonNull;
 
 import com.improve10x.doitquotes.category.Constants;
 import com.improve10x.doitquotes.databinding.ActivityQuotesDetailsBinding;
@@ -22,10 +25,21 @@ public class QuotesDetailsActivity extends BaseActivity {
         setContentView(binding.getRoot());
         Intent intent = getIntent();
         getSupportActionBar().setTitle("Quote Details");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         if (intent.hasExtra(Constants.KEY_QUOTE)) {
             quotation = (Quotation) intent.getSerializableExtra(Constants.KEY_QUOTE);
             showToast("completed");
             showData();
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
     }
 
