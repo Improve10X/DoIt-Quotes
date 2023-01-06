@@ -8,6 +8,7 @@ import android.os.Handler;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.improve10x.doitquotes.LikedQuoteActivity;
 import com.improve10x.doitquotes.QuotesDetailsActivity;
 import com.improve10x.doitquotes.R;
 import com.improve10x.doitquotes.category.CategoriesActivity;
@@ -25,11 +26,11 @@ public class SplashScreenActivity extends AppCompatActivity {
         handler.postDelayed((() -> {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             if(user != null) {
-                Intent intent = new Intent(this, CategoriesActivity.class);
+                Intent intent = new Intent(this, LikedQuoteActivity.class);
                 startActivity(intent);
                 finish();
             } else {
-                Intent intent = new Intent(this, CategoriesActivity.class);
+                Intent intent = new Intent(this, LikedQuoteActivity.class);
                 startActivity(intent);
                 finish();
             }

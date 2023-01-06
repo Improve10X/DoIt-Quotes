@@ -21,7 +21,7 @@ public class QuotationsAdapter extends RecyclerView.Adapter<QuotationViewHolder>
     void setOnItemListener(OnItemActionListener onItemActionListener) {
         listener = onItemActionListener;
     }
-    void setData(List<Quotation> quoteList) {
+    public void setData(List<Quotation> quoteList) {
         quotes = quoteList;
         notifyDataSetChanged();
     }
