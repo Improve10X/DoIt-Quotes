@@ -23,7 +23,6 @@ public class CategoriesActivity extends BaseActivity {
     private ActivityCategoriesBinding binding;
     private ArrayList<Category> categories = new ArrayList<>();
     private CategoriesAdapter categoriesAdapter;
-    private ImageView quoteImgImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
