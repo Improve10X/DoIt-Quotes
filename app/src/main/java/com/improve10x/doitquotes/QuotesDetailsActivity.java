@@ -44,16 +44,13 @@ public class QuotesDetailsActivity extends BaseActivity {
     }
 
     private void showData() {
-        Picasso.get().load(quotation.imageUrl).into(binding.imageImg);
-        binding.authorNameTxt.setText(quotation.authorName);
-        binding.quoteTitleTxt.setText(quotation.quoteTitle);
-        if (quotation.numberOfLikes !=null && quotation.numberOfLikes.isEmpty() == false) {
-            binding.numberOfLikesTxt.setText(quotation.numberOfLikes);
-            binding.imageImg.setVisibility(View.INVISIBLE);
-            binding.quoteTitleLayout.setVisibility(View.VISIBLE);
+        if (quotation.imageUrl != null && quotation.imageUrl.isEmpty() == false) {
+            Picasso.get().load(quotation.imageUrl).into(binding.imageImg);
+            binding.quoteTitleLayout.setVisibility(View.GONE);
         } else {
             binding.quoteTitleLayout.setVisibility(View.VISIBLE);
-            binding.authorNameTxt.setVisibility(View.VISIBLE);
+            binding.authorNameTxt.setText(quotation.authorName);
+            binding.quoteTitleTxt.setText(quotation.quoteTitle);
         }
     }
 }
