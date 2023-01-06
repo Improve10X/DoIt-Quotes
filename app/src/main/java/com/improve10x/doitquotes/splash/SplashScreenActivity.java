@@ -8,12 +8,8 @@ import android.os.Handler;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.improve10x.doitquotes.LikedQuoteActivity;
-import com.improve10x.doitquotes.QuotesDetailsActivity;
 import com.improve10x.doitquotes.R;
 import com.improve10x.doitquotes.category.CategoriesActivity;
-import com.improve10x.doitquotes.login.LogInActivity;
-import com.improve10x.doitquotes.quotation.QuotationsActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
 

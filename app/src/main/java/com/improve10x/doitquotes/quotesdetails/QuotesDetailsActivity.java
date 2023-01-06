@@ -1,4 +1,4 @@
-package com.improve10x.doitquotes;
+package com.improve10x.doitquotes.quotesdetails;
 
 import android.content.Intent;
 import android.os.Bundle;

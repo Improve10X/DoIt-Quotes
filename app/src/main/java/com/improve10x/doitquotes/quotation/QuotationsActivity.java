@@ -12,7 +12,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.improve10x.doitquotes.QuotesDetailsActivity;
+import com.improve10x.doitquotes.quotesdetails.QuotesDetailsActivity;
 import com.improve10x.doitquotes.category.Category;
 import com.improve10x.doitquotes.category.Constants;
 import com.improve10x.doitquotes.databinding.ActivityQuotationsBinding;
