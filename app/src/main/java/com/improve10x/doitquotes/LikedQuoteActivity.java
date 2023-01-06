@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -32,9 +33,20 @@ public class LikedQuoteActivity extends AppCompatActivity {
         binding = ActivityLikedQuoteBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         getSupportActionBar().setTitle("Liked Quotes");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setUpAdapter();
         setupViews();
         fetchLikedQuotes();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
     }
 
     private void fetchLikedQuotes() {
