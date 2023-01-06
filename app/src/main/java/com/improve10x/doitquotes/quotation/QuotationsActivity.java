@@ -2,6 +2,7 @@ package com.improve10x.doitquotes.quotation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,6 +35,7 @@ public class QuotationsActivity extends BaseActivity {
         setContentView(binding.getRoot());
         Intent intent = getIntent();
         getSupportActionBar().setTitle("Quotations");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         if (intent.hasExtra(Constants.EXTRA_CATEGORY)) {
             category = (Category) intent.getSerializableExtra(Constants.EXTRA_CATEGORY);
         }
@@ -42,6 +44,15 @@ public class QuotationsActivity extends BaseActivity {
         fetchQuotations();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
 
     private void fetchQuotations() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
