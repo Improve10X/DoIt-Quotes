@@ -46,6 +46,7 @@ public class QuotationsActivity extends BaseActivity {
     private void fetchQuotations() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("quotes")
+                .whereEqualTo("categoryId",category.categoryId)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
