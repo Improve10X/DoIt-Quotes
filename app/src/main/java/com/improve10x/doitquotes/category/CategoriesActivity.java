@@ -5,12 +5,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.improve10x.doitquotes.R;
 import com.improve10x.doitquotes.network.BaseActivity;
 import com.improve10x.doitquotes.quotation.QuotationsActivity;
 import com.improve10x.doitquotes.databinding.ActivityCategoriesBinding;
@@ -34,6 +37,28 @@ public class CategoriesActivity extends BaseActivity {
         setAdapter();
         setupQuotesRv();
         fetchQuotes();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.categories_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.share_btn) {
+            showToast("share");
+            return true;
+        } else if (item.getItemId() == R.id.liked_quotes_btn) {
+            showToast("Like");
+            return true;
+        } else if (item.getItemId() == R.id.logout_btn) {
+            showToast("Logout");
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
     }
 
     private void fetchQuotes() {
