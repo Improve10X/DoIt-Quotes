@@ -9,11 +9,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
+import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.improve10x.doitquotes.R;
+import com.improve10x.doitquotes.login.LogInActivity;
 import com.improve10x.doitquotes.network.BaseActivity;
 import com.improve10x.doitquotes.quotation.QuotationsActivity;
 import com.improve10x.doitquotes.databinding.ActivityCategoriesBinding;
@@ -54,11 +56,24 @@ public class CategoriesActivity extends BaseActivity {
             showToast("Like");
             return true;
         } else if (item.getItemId() == R.id.logout_btn) {
-            showToast("Logout");
+            logout();
+            showToast("Logout Completed");
             return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void logout() {
+        AuthUI.getInstance()
+                .signOut(this)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    public void onComplete(@NonNull Task<Void> task) {
+                        // user is now signed out
+                        startActivity(new Intent(CategoriesActivity.this, LogInActivity.class));
+                        finish();
+                    }
+                });
     }
 
     private void fetchQuotes() {

@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.improve10x.doitquotes.category.Constants;
@@ -23,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LikedQuoteActivity extends AppCompatActivity {
+
     private ActivityLikedQuoteBinding binding;
     private ArrayList<Quotation> quotes = new ArrayList<>();
     private QuotationsAdapter quotationsAdapter;
@@ -50,8 +53,9 @@ public class LikedQuoteActivity extends AppCompatActivity {
     }
 
     private void fetchLikedQuotes() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("quotes")
+        db.collection("/users/" + user.getUid() + "/likedQuotes")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -59,12 +63,18 @@ public class LikedQuoteActivity extends AppCompatActivity {
                       if (task.isSuccessful()){
                           List<Quotation> quotes = task.getResult().toObjects(Quotation.class);
                           quotationsAdapter.setData(quotes);
+                          handleLikedQuote();
                       } else {
                           Toast.makeText(LikedQuoteActivity.this, "Failed to Load", Toast.LENGTH_SHORT).show();
                       }
                     }
                 });
+    }
 
+    private void handleLikedQuote() {
+        Intent intent = new Intent(this, LikedQuoteActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void setUpAdapter() {
