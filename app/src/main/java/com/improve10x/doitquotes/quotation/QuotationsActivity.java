@@ -3,6 +3,7 @@ package com.improve10x.doitquotes.quotation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -55,6 +56,7 @@ public class QuotationsActivity extends BaseActivity {
     }
 
     private void fetchQuotations() {
+        binding.progressBar.setVisibility(View.VISIBLE);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("quotes")
                 .whereEqualTo("categoryId",category.categoryId)
@@ -62,6 +64,7 @@ public class QuotationsActivity extends BaseActivity {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        binding.progressBar.setVisibility(View.GONE);
                         if (task.isSuccessful()) {
                             List<Quotation> quotes = task.getResult().toObjects(Quotation.class);
                             quotationsAdapter.setData(quotes);

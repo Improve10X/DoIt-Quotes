@@ -13,4 +13,5 @@ public class Quotation implements Serializable {
     public String shareButton;
     public String rightArrow;
     public String leftArrow;
+    public String progressBar;
 }
