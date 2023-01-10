@@ -39,11 +39,9 @@ public class QuotationsAdapter extends RecyclerView.Adapter<QuotationViewHolder>
       Quotation quotation = quotes.get(position);
       if (quotation.imageUrl != null && quotation.imageUrl.isEmpty() == false) {
           Picasso.get().load(quotation.imageUrl).into(holder.binding.imageImg);
-          holder.binding.imageImg.setVisibility(View.VISIBLE);
-          holder.binding.titleLayout.setVisibility(View.GONE);
+          holder.binding.quoteTitleGroup.setVisibility(View.GONE);
       } else {
-          holder.binding.imageImg.setVisibility(View.GONE);
-          holder.binding.titleLayout.setVisibility(View.VISIBLE);
+          holder.binding.quoteTitleGroup.setVisibility(View.VISIBLE);
           holder.itemView.setOnClickListener(view -> {
               listener.onItemClicked(quotation);
           });
