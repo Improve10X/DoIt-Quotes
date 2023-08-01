@@ -39,7 +39,7 @@ public class QuotationsAdapter extends RecyclerView.Adapter<QuotationViewHolder>
     public void onBindViewHolder(@NonNull QuotationViewHolder holder, int position) {
       Quotation quotation = quotes.get(position);
       holder.binding.likeBtn.setOnClickListener(view -> {
-          Toast.makeText(view.getContext(), "liked", Toast.LENGTH_SHORT).show();
+          listener.onLikeClicked(quotation);
       });
       if (quotation.imageUrl != null && quotation.imageUrl.isEmpty() == false) {
           Picasso.get().load(quotation.imageUrl).into(holder.binding.imageImg);
