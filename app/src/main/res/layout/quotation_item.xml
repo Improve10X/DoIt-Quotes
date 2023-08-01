@@ -42,13 +42,13 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
-        app:layout_constraintTop_toTopOf="@+id/imageButton"
+        app:layout_constraintBottom_toBottomOf="@+id/like_btn"
+        app:layout_constraintStart_toEndOf="@+id/like_btn"
+        app:layout_constraintTop_toTopOf="@+id/like_btn"
         app:layout_constraintVertical_bias="0.466" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/like_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="4dp"
