@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.improve10x.doitquotes.LikedQuoteActivity;
 import com.improve10x.doitquotes.R;
 import com.improve10x.doitquotes.login.LogInActivity;
 import com.improve10x.doitquotes.network.BaseActivity;
@@ -55,7 +56,8 @@ public class CategoriesActivity extends BaseActivity implements OnItemActionList
             showToast("share");
             return true;
         } else if (item.getItemId() == R.id.liked_quotes_btn) {
-            showToast("Like");
+            Intent intent = new Intent(this, LikedQuoteActivity.class);
+            startActivity(intent);
             return true;
         } else if (item.getItemId() == R.id.logout_btn) {
             logout();
