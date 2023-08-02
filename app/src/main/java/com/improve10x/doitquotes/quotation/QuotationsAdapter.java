@@ -38,6 +38,9 @@ public class QuotationsAdapter extends RecyclerView.Adapter<QuotationViewHolder>
     @Override
     public void onBindViewHolder(@NonNull QuotationViewHolder holder, int position) {
       Quotation quotation = quotes.get(position);
+      holder.binding.shareBtn.setOnClickListener(view -> {
+          Toast.makeText(view.getContext(), "Shared", Toast.LENGTH_SHORT).show();
+      });
       holder.binding.likeBtn.setOnClickListener(view -> {
           listener.onLikeClicked(quotation);
       });
