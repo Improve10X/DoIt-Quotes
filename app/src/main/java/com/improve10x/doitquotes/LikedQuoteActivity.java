@@ -63,18 +63,11 @@ public class LikedQuoteActivity extends AppCompatActivity {
                       if (task.isSuccessful()){
                           List<Quotation> quotes = task.getResult().toObjects(Quotation.class);
                           quotationsAdapter.setData(quotes);
-                          handleLikedQuote();
                       } else {
                           Toast.makeText(LikedQuoteActivity.this, "Failed to Load", Toast.LENGTH_SHORT).show();
                       }
                     }
                 });
-    }
-
-    private void handleLikedQuote() {
-        Intent intent = new Intent(this, LikedQuoteActivity.class);
-        startActivity(intent);
-        finish();
     }
 
     private void setUpAdapter() {

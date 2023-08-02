@@ -61,7 +61,7 @@ public class QuotationsActivity extends BaseActivity {
     }
 
     private void fetchQuotations() {
-        binding.progressBar.setVisibility(View.VISIBLE);
+        //binding.progressBar.setVisibility(View.VISIBLE);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("quotes")
                 .whereEqualTo("categoryId",category.categoryId)
@@ -69,7 +69,7 @@ public class QuotationsActivity extends BaseActivity {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        binding.progressBar.setVisibility(View.GONE);
+                        //binding.progressBar.setVisibility(View.GONE);
                         if (task.isSuccessful()) {
                             List<Quotation> quotes = task.getResult().toObjects(Quotation.class);
                             quotationsAdapter.setData(quotes);
@@ -114,7 +114,7 @@ public class QuotationsActivity extends BaseActivity {
                 .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {
-                        Toast.makeText(QuotationsActivity.this, "Added in LikedActivity", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(QuotationsActivity.this, "Added in Liked Activity", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
