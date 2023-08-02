@@ -62,7 +62,6 @@
 
         <ImageView
             android:id="@+id/right_arrow_img"
-            android:clickable="true"
             android:layout_width="27dp"
             android:layout_height="31dp"
             android:layout_marginEnd="4dp"
