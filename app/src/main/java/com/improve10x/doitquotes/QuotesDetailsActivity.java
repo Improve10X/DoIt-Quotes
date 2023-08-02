@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -30,7 +31,21 @@ public class QuotesDetailsActivity extends BaseActivity {
             quotation = (Quotation) intent.getSerializableExtra(Constants.KEY_QUOTE);
             showToast("completed");
             showData();
+            handleRightArrow();
+            handleLeftArrow();
         }
+    }
+
+    private void handleLeftArrow() {
+        binding.leftArrowImg.setOnClickListener(view -> {
+            Toast.makeText(this, "BeforeImage", Toast.LENGTH_SHORT).show();
+        });
+    }
+
+    private void handleRightArrow() {
+        binding.rightArrowImg.setOnClickListener(view -> {
+            Toast.makeText(this, "NextImage", Toast.LENGTH_SHORT).show();
+        });
     }
 
     @Override
