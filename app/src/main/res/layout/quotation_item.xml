@@ -56,7 +56,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_img"
-        app:srcCompat="@drawable/baseline_thumb_up_off_alt_24" />
+        app:srcCompat="@drawable/baseline_favorite_border_24" />
 
     <ImageButton
         android:id="@+id/share_btn"
