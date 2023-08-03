@@ -28,7 +28,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuotationsActivity extends BaseActivity {
-
     private ArrayList<Quotation> quotes = new ArrayList<>();
     private ActivityQuotationsBinding binding;
     private QuotationsAdapter quotationsAdapter;

@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.improve10x.doitquotes.category.Category;
 import com.improve10x.doitquotes.category.Constants;
 import com.improve10x.doitquotes.databinding.ActivityQuotesDetailsBinding;
 import com.improve10x.doitquotes.network.BaseActivity;
@@ -18,6 +19,10 @@ public class QuotesDetailsActivity extends BaseActivity {
 
     private Quotation quotation;
     public ActivityQuotesDetailsBinding binding;
+
+    private Category category;
+
+    private int currentImageIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +49,7 @@ public class QuotesDetailsActivity extends BaseActivity {
 
     private void handleNextImageBtn() {
         binding.nextImageBtn.setOnClickListener(view -> {
-            Toast.makeText(this, "NextImage", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Next Image", Toast.LENGTH_SHORT).show();
         });
     }
 
