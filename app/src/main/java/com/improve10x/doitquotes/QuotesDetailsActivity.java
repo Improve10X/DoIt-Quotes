@@ -31,7 +31,7 @@ public class QuotesDetailsActivity extends BaseActivity {
             quotation = (Quotation) intent.getSerializableExtra(Constants.KEY_QUOTE);
             showToast("completed");
             showData();
-            handleRightArrow();
+            handleNextImageBtn();
             handleLeftArrow();
         }
     }
@@ -42,8 +42,8 @@ public class QuotesDetailsActivity extends BaseActivity {
         });
     }
 
-    private void handleRightArrow() {
-        binding.rightArrowImg.setOnClickListener(view -> {
+    private void handleNextImageBtn() {
+        binding.nextImageBtn.setOnClickListener(view -> {
             Toast.makeText(this, "NextImage", Toast.LENGTH_SHORT).show();
         });
     }
