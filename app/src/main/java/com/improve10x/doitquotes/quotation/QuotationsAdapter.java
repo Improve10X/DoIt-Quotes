@@ -3,6 +3,7 @@ package com.improve10x.doitquotes.quotation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,6 +38,12 @@ public class QuotationsAdapter extends RecyclerView.Adapter<QuotationViewHolder>
     @Override
     public void onBindViewHolder(@NonNull QuotationViewHolder holder, int position) {
       Quotation quotation = quotes.get(position);
+      holder.binding.shareBtn.setOnClickListener(view -> {
+          Toast.makeText(view.getContext(), "Shared", Toast.LENGTH_SHORT).show();
+      });
+      holder.binding.likeBtn.setOnClickListener(view -> {
+          listener.onLikeClicked(quotation);
+      });
       if (quotation.imageUrl != null && quotation.imageUrl.isEmpty() == false) {
           Picasso.get().load(quotation.imageUrl).into(holder.binding.imageImg);
           holder.binding.quoteTitleGroup.setVisibility(View.GONE);

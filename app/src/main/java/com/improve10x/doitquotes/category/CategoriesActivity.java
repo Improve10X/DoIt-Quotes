@@ -8,12 +8,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.improve10x.doitquotes.LikedQuoteActivity;
 import com.improve10x.doitquotes.R;
 import com.improve10x.doitquotes.login.LogInActivity;
 import com.improve10x.doitquotes.network.BaseActivity;
@@ -23,7 +26,7 @@ import com.improve10x.doitquotes.databinding.ActivityCategoriesBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoriesActivity extends BaseActivity {
+public class CategoriesActivity extends BaseActivity implements OnItemActionListener{
 
     private ActivityCategoriesBinding binding;
     private ArrayList<Category> categories = new ArrayList<>();
@@ -53,7 +56,8 @@ public class CategoriesActivity extends BaseActivity {
             showToast("share");
             return true;
         } else if (item.getItemId() == R.id.liked_quotes_btn) {
-            showToast("Like");
+            Intent intent = new Intent(this, LikedQuoteActivity.class);
+            startActivity(intent);
             return true;
         } else if (item.getItemId() == R.id.logout_btn) {
             logout();
@@ -97,9 +101,7 @@ public class CategoriesActivity extends BaseActivity {
     private void setAdapter() {
         categoriesAdapter = new CategoriesAdapter();
         categoriesAdapter.setData(categories);
-        categoriesAdapter.setOnItemListener(category -> {
-            sendData(category);
-        });
+        categoriesAdapter.setOnItemListener(this);
     }
 
     private void sendData(Category category) {
@@ -115,5 +117,10 @@ public class CategoriesActivity extends BaseActivity {
     private void setupQuotesRv() {
       binding.categoriesRv.setLayoutManager(new LinearLayoutManager(this));
       binding.categoriesRv.setAdapter(categoriesAdapter);
+    }
+
+    @Override
+    public void onItemClicked(Category category) {
+        sendData(category);
     }
 }

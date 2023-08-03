@@ -10,9 +10,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.improve10x.doitquotes.LikedQuoteActivity;
 import com.improve10x.doitquotes.QuotesDetailsActivity;
 import com.improve10x.doitquotes.category.Category;
 import com.improve10x.doitquotes.category.Constants;
@@ -56,7 +61,7 @@ public class QuotationsActivity extends BaseActivity {
     }
 
     private void fetchQuotations() {
-        binding.progressBar.setVisibility(View.VISIBLE);
+        //binding.progressBar.setVisibility(View.VISIBLE);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("quotes")
                 .whereEqualTo("categoryId",category.categoryId)
@@ -64,7 +69,7 @@ public class QuotationsActivity extends BaseActivity {
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        binding.progressBar.setVisibility(View.GONE);
+                        //binding.progressBar.setVisibility(View.GONE);
                         if (task.isSuccessful()) {
                             List<Quotation> quotes = task.getResult().toObjects(Quotation.class);
                             quotationsAdapter.setData(quotes);
@@ -88,6 +93,11 @@ public class QuotationsActivity extends BaseActivity {
             public void onItemClicked(Quotation quotation) {
                 setupQuotes(quotation);
             }
+
+            @Override
+            public void onLikeClicked(Quotation quotation) {
+               addLikedQuotes(quotation);
+            }
         });
     }
 
@@ -95,5 +105,23 @@ public class QuotationsActivity extends BaseActivity {
         Intent intent = new Intent(this, QuotesDetailsActivity.class);
         intent.putExtra(Constants.KEY_QUOTE, quotation);
         startActivity(intent);
+    }
+    private void addLikedQuotes(Quotation quotation) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("/users/" + user.getUid() + "/likedQuotes")
+                .add(quotation)
+                .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                        Toast.makeText(QuotationsActivity.this, "Added in Liked Activity", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(QuotationsActivity.this, "Failed to Add Quotes ", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }
