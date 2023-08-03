@@ -9,7 +9,7 @@ public class Quotation implements Serializable {
     public String quoteTitle;
     public String authorName;
     public String numberOfLikes;
-    public String likeButton;
+    public Boolean likeButton;
     public String shareButton;
     public String rightArrow;
     public String leftArrow;

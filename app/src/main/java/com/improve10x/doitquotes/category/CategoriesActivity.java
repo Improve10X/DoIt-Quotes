@@ -73,9 +73,10 @@ public class CategoriesActivity extends BaseActivity implements OnItemActionList
                 .signOut(this)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     public void onComplete(@NonNull Task<Void> task) {
+
                         // user is now signed out
-                        startActivity(new Intent(CategoriesActivity.this, LogInActivity.class));
-                        finish();
+                       // startActivity(new Intent(CategoriesActivity.this, LogInActivity.class));
+                        //finish();
                     }
                 });
     }

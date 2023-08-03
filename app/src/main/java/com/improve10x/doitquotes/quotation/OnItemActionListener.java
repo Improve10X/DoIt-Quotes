@@ -4,4 +4,5 @@ public interface OnItemActionListener {
 
     void onItemClicked(Quotation quotation);
     void onLikeClicked(Quotation quotation);
+
 }

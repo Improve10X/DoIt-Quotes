@@ -43,7 +43,14 @@ public class QuotationsAdapter extends RecyclerView.Adapter<QuotationViewHolder>
       });
       holder.binding.likeBtn.setOnClickListener(view -> {
           listener.onLikeClicked(quotation);
+          holder.binding.likeBtn.setVisibility(View.INVISIBLE);
+          holder.binding.favBtn.setVisibility(View.VISIBLE);
       });
+      holder.binding.favBtn.setOnClickListener(view -> {
+          holder.binding.favBtn.setVisibility(View.INVISIBLE);
+          holder.binding.likeBtn.setVisibility(View.VISIBLE);
+      });
+
       if (quotation.imageUrl != null && quotation.imageUrl.isEmpty() == false) {
           Picasso.get().load(quotation.imageUrl).into(holder.binding.imageImg);
           holder.binding.quoteTitleGroup.setVisibility(View.GONE);
