@@ -20,8 +20,6 @@ public class QuotesDetailsActivity extends BaseActivity {
     private Quotation quotation;
     public ActivityQuotesDetailsBinding binding;
 
-    private Category category;
-
     private int currentImageIndex = 0;
 
     @Override
