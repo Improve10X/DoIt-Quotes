@@ -21,7 +21,6 @@ public class QuotesDetailsActivity extends BaseActivity {
 
     private List<Quotation> quotations;
     public ActivityQuotesDetailsBinding binding;
-
     private int currentImageIndex = 0;
 
     @Override
