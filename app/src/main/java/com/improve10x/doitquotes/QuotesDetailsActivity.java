@@ -15,9 +15,11 @@ import com.improve10x.doitquotes.network.BaseActivity;
 import com.improve10x.doitquotes.quotation.Quotation;
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
 public class QuotesDetailsActivity extends BaseActivity {
 
-    private Quotation quotation;
+    private List<Quotation> quotations;
     public ActivityQuotesDetailsBinding binding;
 
     private int currentImageIndex = 0;
@@ -31,7 +33,7 @@ public class QuotesDetailsActivity extends BaseActivity {
         getSupportActionBar().setTitle("Quote Details");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         if (intent.hasExtra(Constants.KEY_QUOTE)) {
-            quotation = (Quotation) intent.getSerializableExtra(Constants.KEY_QUOTE);
+            quotations = (List<Quotation>) intent.getSerializableExtra(Constants.KEY_QUOTE);
             showToast("completed");
             showData();
             handleNextImageBtn();
@@ -41,12 +43,20 @@ public class QuotesDetailsActivity extends BaseActivity {
 
     private void handleLeftArrow() {
         binding.leftArrowImg.setOnClickListener(view -> {
+           // if (currentImageIndex > 0){
+               // currentImageIndex--;
+                //showData();
+           // }
             Toast.makeText(this, "BeforeImage", Toast.LENGTH_SHORT).show();
         });
     }
 
     private void handleNextImageBtn() {
         binding.nextImageBtn.setOnClickListener(view -> {
+            //if (currentImageIndex < quotation.length() -1){
+                //currentImageIndex++;
+                //showData();
+           // }
             Toast.makeText(this, "Next Image", Toast.LENGTH_SHORT).show();
         });
     }
@@ -62,13 +72,13 @@ public class QuotesDetailsActivity extends BaseActivity {
     }
 
     private void showData() {
-        if (quotation.imageUrl != null && quotation.imageUrl.isEmpty() == false) {
-            Picasso.get().load(quotation.imageUrl).into(binding.imageImg);
+        if (quotations.get(0).imageUrl != null && quotations.get(0).imageUrl.isEmpty() == false) {
+            Picasso.get().load(quotations.get(0).imageUrl).into(binding.imageImg);
             binding.quoteTitleLayout.setVisibility(View.GONE);
         } else {
             binding.quoteTitleLayout.setVisibility(View.VISIBLE);
-            binding.authorNameTxt.setText(quotation.authorName);
-            binding.quoteTitleTxt.setText(quotation.quoteTitle);
+            binding.authorNameTxt.setText(quotations.get(0).authorName);
+            binding.quoteTitleTxt.setText(quotations.get(0).quoteTitle);
         }
     }
 }
