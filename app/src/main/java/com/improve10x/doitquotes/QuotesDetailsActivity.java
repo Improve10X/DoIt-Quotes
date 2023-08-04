@@ -33,7 +33,7 @@ public class QuotesDetailsActivity extends BaseActivity {
         getSupportActionBar().setTitle("Quote Details");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         if (intent.hasExtra(Constants.KEY_QUOTE)) {
-            quotations = (List<Quotation>) intent.getSerializableExtra(Constants.KEY_QUOTE);
+            Quotation quotation = (Quotation) intent.getSerializableExtra(Constants.KEY_QUOTE);
             showToast("completed");
             showData();
             handleNextImageBtn();
