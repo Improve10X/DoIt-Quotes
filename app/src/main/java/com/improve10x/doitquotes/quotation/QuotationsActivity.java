@@ -89,7 +89,7 @@ public class QuotationsActivity extends BaseActivity {
         quotationsAdapter.setOnItemListener(new OnItemActionListener() {
             @Override
             public void onItemClicked(List<Quotation> quotation,int quotationId) {
-                setupQuotes(quotations,quotationId);
+                setupQuotes(quotations, quotationId);
             }
 
             @Override

@@ -21,7 +21,6 @@ public class QuotesDetailsActivity extends BaseActivity {
 
     private List<Quotation> quotations;
     public ActivityQuotesDetailsBinding binding;
-
     private int currentImageIndex = 0;
 
     @Override
@@ -35,7 +34,7 @@ public class QuotesDetailsActivity extends BaseActivity {
         if (intent.hasExtra(Constants.KEY_QUOTE)) {
             quotations = (List<Quotation>) getIntent().getSerializableExtra(Constants.KEY_QUOTE);
             if (intent.hasExtra("quotationId")){
-                currentImageIndex = getIntent().getIntExtra("quotationId",0);
+                currentImageIndex = getIntent().getIntExtra("quotationId",1);
             }
             showToast("completed");
             showData();
@@ -56,10 +55,8 @@ public class QuotesDetailsActivity extends BaseActivity {
 
     private void handleNextImageBtn() {
         binding.nextImageBtn.setOnClickListener(view -> {
-            //if (currentImageIndex < quotation.length() -1){
-                //currentImageIndex++;
+                currentImageIndex++;
                 //showData();
-           // }
             Toast.makeText(this, "Next Image", Toast.LENGTH_SHORT).show();
         });
     }
