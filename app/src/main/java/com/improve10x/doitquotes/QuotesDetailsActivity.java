@@ -21,6 +21,7 @@ public class QuotesDetailsActivity extends BaseActivity {
 
     private List<Quotation> quotations;
     public ActivityQuotesDetailsBinding binding;
+
     private int currentImageIndex = 0;
 
     @Override
@@ -32,7 +33,10 @@ public class QuotesDetailsActivity extends BaseActivity {
         getSupportActionBar().setTitle("Quote Details");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         if (intent.hasExtra(Constants.KEY_QUOTE)) {
-            quotations = (List<Quotation>) intent.getSerializableExtra(Constants.KEY_QUOTE);
+            quotations = (List<Quotation>) getIntent().getSerializableExtra(Constants.KEY_QUOTE);
+            if (intent.hasExtra("quotationId")){
+                currentImageIndex = getIntent().getIntExtra("quotationId",0);
+            }
             showToast("completed");
             showData();
             handleNextImageBtn();
