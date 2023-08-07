@@ -15,7 +15,6 @@ import com.improve10x.doitquotes.network.BaseActivity;
 import com.improve10x.doitquotes.quotation.Quotation;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class QuotesDetailsActivity extends BaseActivity {
@@ -57,7 +56,7 @@ public class QuotesDetailsActivity extends BaseActivity {
 
     private void handleNextImageBtn() {
         binding.nextImageBtn.setOnClickListener(view -> {
-           // if (currentImageIndex < quotation.length() -1){
+            //if (currentImageIndex < quotation.length() -1){
                 //currentImageIndex++;
                 //showData();
            // }
