@@ -8,5 +8,5 @@ public class Constants {
 
     public static final String EXTRA_CATEGORY = "category";
 
-    public static final String QUOTES_DETAILS = "quotation";
+    public static final String QUOTES_DETAILS = "quotations";
 }
