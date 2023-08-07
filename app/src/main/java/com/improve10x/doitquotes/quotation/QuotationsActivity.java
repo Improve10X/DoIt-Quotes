@@ -68,8 +68,8 @@ public class QuotationsActivity extends BaseActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         //binding.progressBar.setVisibility(View.GONE);
                         if (task.isSuccessful()) {
-                            List<Quotation> quotes = task.getResult().toObjects(Quotation.class);
-                            quotationsAdapter.setData(quotes);
+                            quotations.addAll(task.getResult().toObjects(Quotation.class));
+                            quotationsAdapter.setData(quotations);
                         } else {
                             Toast.makeText(QuotationsActivity.this, "Failed to Load", Toast.LENGTH_SHORT).show();
                         }
@@ -87,8 +87,8 @@ public class QuotationsActivity extends BaseActivity {
         quotationsAdapter.setData(quotations);
         quotationsAdapter.setOnItemListener(new OnItemActionListener() {
             @Override
-            public void onItemClicked(Quotation quotation) {
-                setupQuotes(quotation);
+            public void onItemClicked(List<Quotation> quotation,int quotationId) {
+                setupQuotes(quotations,quotationId);
             }
 
             @Override
@@ -98,9 +98,10 @@ public class QuotationsActivity extends BaseActivity {
         });
     }
 
-    private void setupQuotes(Quotation quotations) {
+    private void setupQuotes(List<Quotation> quotations,int quotationId) {
         Intent intent = new Intent(this, QuotesDetailsActivity.class);
-        intent.putExtra(Constants.KEY_QUOTE, quotations);
+        intent.putExtra(Constants.KEY_QUOTE, this.quotations);
+        intent.putExtra("quotationId",quotationId);
         startActivity(intent);
     }
     private void addLikedQuotes(Quotation quotation) {

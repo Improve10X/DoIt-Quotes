@@ -15,6 +15,7 @@ import com.improve10x.doitquotes.network.BaseActivity;
 import com.improve10x.doitquotes.quotation.Quotation;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class QuotesDetailsActivity extends BaseActivity {
@@ -33,7 +34,10 @@ public class QuotesDetailsActivity extends BaseActivity {
         getSupportActionBar().setTitle("Quote Details");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         if (intent.hasExtra(Constants.KEY_QUOTE)) {
-            quotations = (List<Quotation>) intent.getSerializableExtra(Constants.KEY_QUOTE);
+            quotations = (List<Quotation>) getIntent().getSerializableExtra(Constants.KEY_QUOTE);
+            if (intent.hasExtra("quotationId")){
+                currentImageIndex = getIntent().getIntExtra("quotationId",0);
+            }
             showToast("completed");
             showData();
             handleNextImageBtn();
@@ -53,7 +57,7 @@ public class QuotesDetailsActivity extends BaseActivity {
 
     private void handleNextImageBtn() {
         binding.nextImageBtn.setOnClickListener(view -> {
-            //if (currentImageIndex < quotation.length() -1){
+           // if (currentImageIndex < quotation.length() -1){
                 //currentImageIndex++;
                 //showData();
            // }
