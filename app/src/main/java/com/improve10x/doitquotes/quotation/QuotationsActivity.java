@@ -90,6 +90,7 @@ public class QuotationsActivity extends BaseActivity {
             @Override
             public void onItemClicked(List<Quotation> quotation,int quotationId) {
                 setupQuotes(quotations,quotationId);
+                Toast.makeText(QuotationsActivity.this, "Item Clicked", Toast.LENGTH_SHORT).show();
             }
 
             @Override

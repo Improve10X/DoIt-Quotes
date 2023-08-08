@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Quote implements Serializable {
 
-    public String id;
+   // public String id;
     public String imageUrl;
     public String numberOfLikes;
     public String likeButton;
