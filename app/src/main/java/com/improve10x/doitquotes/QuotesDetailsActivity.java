@@ -32,7 +32,10 @@ public class QuotesDetailsActivity extends BaseActivity {
         getSupportActionBar().setTitle("Quote Details");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         if (intent.hasExtra(Constants.KEY_QUOTE)) {
-            quotations = (List<Quotation>) intent.getSerializableExtra(Constants.KEY_QUOTE);
+            quotations = (List<Quotation>) getIntent().getSerializableExtra(Constants.KEY_QUOTE);
+            if (intent.hasExtra("quotationId")){
+                currentImageIndex = getIntent().getIntExtra("quotationId",1);
+            }
             showToast("completed");
             showData();
             handleNextImageBtn();
@@ -52,10 +55,8 @@ public class QuotesDetailsActivity extends BaseActivity {
 
     private void handleNextImageBtn() {
         binding.nextImageBtn.setOnClickListener(view -> {
-            //if (currentImageIndex < quotation.length() -1){
-                //currentImageIndex++;
+                currentImageIndex++;
                 //showData();
-           // }
             Toast.makeText(this, "Next Image", Toast.LENGTH_SHORT).show();
         });
     }
@@ -71,14 +72,13 @@ public class QuotesDetailsActivity extends BaseActivity {
     }
 
     private void showData() {
-        Quotation currentQuotation = quotations.get(currentImageIndex);
-        if (currentQuotation.imageUrl != null && !currentQuotation.imageUrl.isEmpty()) {
-            Picasso.get().load(currentQuotation.imageUrl).into(binding.imageImg);
+        if (quotations.get(0).imageUrl != null && quotations.get(0).imageUrl.isEmpty() == false) {
+            Picasso.get().load(quotations.get(0).imageUrl).into(binding.imageImg);
             binding.quoteTitleLayout.setVisibility(View.GONE);
         } else {
             binding.quoteTitleLayout.setVisibility(View.VISIBLE);
-            binding.authorNameTxt.setText(currentQuotation.authorName);
-            binding.quoteTitleTxt.setText(currentQuotation.quoteTitle);
+            binding.authorNameTxt.setText(quotations.get(0).authorName);
+            binding.quoteTitleTxt.setText(quotations.get(0).quoteTitle);
         }
     }
 }
