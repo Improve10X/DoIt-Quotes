@@ -33,11 +33,12 @@ public class QuotesDetailsActivity extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         if (intent.hasExtra(Constants.KEY_QUOTE)) {
             quotations = (List<Quotation>) getIntent().getSerializableExtra(Constants.KEY_QUOTE);
-            if (intent.hasExtra("quotationId")){
-                currentImageIndex = getIntent().getIntExtra("quotationId",1);
+            if (intent.hasExtra("quotationId")) {
+                currentImageIndex = getIntent().getIntExtra("quotationId", 1);
             }
             showToast("completed");
-            showData();
+            Quotation quotation = quotations.get(currentImageIndex);
+            showData(quotation);
             handleNextImageBtn();
             handleLeftArrow();
         }
@@ -45,19 +46,17 @@ public class QuotesDetailsActivity extends BaseActivity {
 
     private void handleLeftArrow() {
         binding.leftArrowImg.setOnClickListener(view -> {
-           // if (currentImageIndex > 0){
-               // currentImageIndex--;
-                //showData();
-           // }
-            Toast.makeText(this, "BeforeImage", Toast.LENGTH_SHORT).show();
+            currentImageIndex--;
+            Quotation quotation = quotations.get(currentImageIndex);
+            showData(quotation);
         });
     }
 
     private void handleNextImageBtn() {
         binding.nextImageBtn.setOnClickListener(view -> {
-                currentImageIndex++;
-                //showData();
-            Toast.makeText(this, "Next Image", Toast.LENGTH_SHORT).show();
+            currentImageIndex++;
+            Quotation quotation = quotations.get(currentImageIndex);
+            showData(quotation);
         });
     }
 
@@ -71,14 +70,14 @@ public class QuotesDetailsActivity extends BaseActivity {
         }
     }
 
-    private void showData() {
-        if (quotations.get(0).imageUrl != null && quotations.get(0).imageUrl.isEmpty() == false) {
-            Picasso.get().load(quotations.get(0).imageUrl).into(binding.imageImg);
+    private void showData(Quotation quotation) {
+        if (quotation.imageUrl != null && quotation.imageUrl.isEmpty() == false) {
+            Picasso.get().load(quotation.imageUrl).into(binding.imageImg);
             binding.quoteTitleLayout.setVisibility(View.GONE);
         } else {
             binding.quoteTitleLayout.setVisibility(View.VISIBLE);
-            binding.authorNameTxt.setText(quotations.get(0).authorName);
-            binding.quoteTitleTxt.setText(quotations.get(0).quoteTitle);
+            binding.authorNameTxt.setText(quotation.authorName);
+            binding.quoteTitleTxt.setText(quotation.quoteTitle);
         }
     }
 }
