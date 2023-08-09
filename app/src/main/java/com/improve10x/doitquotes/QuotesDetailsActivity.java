@@ -45,7 +45,7 @@ public class QuotesDetailsActivity extends BaseActivity {
     }
 
     private void handleLeftArrow() {
-        binding.leftArrowImg.setOnClickListener(view -> {
+        binding.previousimagebtn.setOnClickListener(view -> {
             currentImageIndex--;
             Quotation quotation = quotations.get(currentImageIndex);
             showData(quotation);
@@ -79,5 +79,16 @@ public class QuotesDetailsActivity extends BaseActivity {
             binding.authorNameTxt.setText(quotation.authorName);
             binding.quoteTitleTxt.setText(quotation.quoteTitle);
         }
+        if (currentImageIndex == 0) {
+            binding.previousimagebtn.setVisibility(View.INVISIBLE);
+        } else {
+            binding.previousimagebtn.setVisibility(View.VISIBLE);
+        }
+        if (currentImageIndex == quotations.size() -1){
+            binding.nextImageBtn.setVisibility(View.INVISIBLE);
+        } else {
+            binding.nextImageBtn.setVisibility(View.VISIBLE);
+        }
+
     }
 }
