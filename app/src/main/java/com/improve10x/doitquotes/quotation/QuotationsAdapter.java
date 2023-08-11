@@ -17,10 +17,10 @@ public class QuotationsAdapter extends RecyclerView.Adapter<QuotationViewHolder>
 
     private List<Quotation> quotations;
 
-    private OnItemActionListener listener;
+    private OnItemActionListener onItemActionListener;
 
     void setOnItemListener(OnItemActionListener onItemActionListener) {
-        listener = onItemActionListener;
+        this.onItemActionListener = onItemActionListener;
     }
     public void setData(List<Quotation> quoteList) {
         quotations = quoteList;
@@ -42,7 +42,7 @@ public class QuotationsAdapter extends RecyclerView.Adapter<QuotationViewHolder>
           Toast.makeText(view.getContext(), "Shared", Toast.LENGTH_SHORT).show();
       });
       holder.binding.likeBtn.setOnClickListener(view -> {
-          listener.onLikeClicked(quotation);
+          onItemActionListener.onLikeClicked(quotation);
           holder.binding.likeBtn.setVisibility(View.INVISIBLE);
           holder.binding.favBtn.setVisibility(View.VISIBLE);
       });
@@ -57,13 +57,13 @@ public class QuotationsAdapter extends RecyclerView.Adapter<QuotationViewHolder>
       } else {
           holder.binding.quoteTitleGroup.setVisibility(View.VISIBLE);
           holder.itemView.setOnClickListener(view -> {
-              listener.onItemClicked(quotations, position);
+              onItemActionListener.onItemClicked(quotations, position);
           });
       }
         holder.binding.quoteTitle.setText(quotation.quoteTitle);
         holder.binding.authorNameTxt.setText(quotation.authorName);
         holder.itemView.setOnClickListener(view -> {
-            listener.onItemClicked(quotations, position);
+            onItemActionListener.onItemClicked(quotations, position);
         });
         if (quotation.numberOfLikes !=null && quotation.numberOfLikes.isEmpty() == false) {
             holder.binding.numberOfLikesTxt.setText(quotation.numberOfLikes);

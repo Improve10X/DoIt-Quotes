@@ -53,12 +53,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/image_img"
             app:srcCompat="@drawable/baseline_favorite_24" />
 
         <ImageButton
-            android:id="@+id/imageButton4"
+            android:id="@+id/share_image_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
