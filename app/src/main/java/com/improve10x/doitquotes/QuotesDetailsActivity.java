@@ -8,16 +8,25 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.improve10x.doitquotes.category.Category;
 import com.improve10x.doitquotes.category.Constants;
 import com.improve10x.doitquotes.databinding.ActivityQuotesDetailsBinding;
 import com.improve10x.doitquotes.network.BaseActivity;
+import com.improve10x.doitquotes.quotation.OnItemActionListener;
 import com.improve10x.doitquotes.quotation.Quotation;
+import com.improve10x.doitquotes.quotation.QuotationsActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class QuotesDetailsActivity extends BaseActivity {
+public class QuotesDetailsActivity extends BaseActivity   {
 
     private List<Quotation> quotations;
     public ActivityQuotesDetailsBinding binding;
@@ -41,6 +50,7 @@ public class QuotesDetailsActivity extends BaseActivity {
             showData(quotation);
             handleNextImageBtn();
             handleLeftArrow();
+
         }
     }
 
@@ -89,6 +99,44 @@ public class QuotesDetailsActivity extends BaseActivity {
         } else {
             binding.nextImageBtn.setVisibility(View.VISIBLE);
         }
+       /* if (quotation.imageUrl == null && quotation.imageUrl.isEmpty()) {
+            Picasso.get().load(quotation.imageUrl).into(binding.imageImg);
+            binding.imageImg.setVisibility(View.GONE);
+            //binding.quoteTitleLayout.setVisibility(View.VISIBLE);
+            binding.quoteTitleTxt.setVisibility(View.VISIBLE);
+            binding.authorNameTxt.setVisibility(View.VISIBLE);
+            binding.authorNameTxt.setText(quotation.authorName);
+            binding.quoteTitleTxt.setText(quotation.quoteTitle);
+        } else {
+            binding.quoteTitleLayout.setVisibility(View.GONE);
+            binding.imageImg.setVisibility(View.VISIBLE);
+        }*/
+    }
 
+    private void handleLikeImageBtn(){
+        binding.likeBtn.setOnClickListener(view -> {
+
+        });
+    }
+
+
+
+    private void addLikedQuotes(Quotation quotation) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("/users/" + user.getUid() + "/likedQuotes")
+                .add(quotation)
+                .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                        Toast.makeText(QuotesDetailsActivity.this, "Added in Liked Activity", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(QuotesDetailsActivity.this, "Failed to Add Quotes ", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }
