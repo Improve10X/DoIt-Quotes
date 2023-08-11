@@ -50,6 +50,7 @@ public class QuotesDetailsActivity extends BaseActivity   {
             showData(quotation);
             handleNextImageBtn();
             handleLeftArrow();
+            handleLikeImageBtn();
 
         }
     }
@@ -114,12 +115,16 @@ public class QuotesDetailsActivity extends BaseActivity   {
     }
 
     private void handleLikeImageBtn(){
-        binding.likeBtn.setOnClickListener(view -> {
+        binding.dislikeBtn.setOnClickListener(view -> {
+            binding.likeBtn.setVisibility(View.VISIBLE);
+            binding.dislikeBtn.setVisibility(View.INVISIBLE);
+        });
 
+        binding.likeBtn.setOnClickListener(view -> {
+            binding.likeBtn.setVisibility(View.INVISIBLE);
+            binding.dislikeBtn.setVisibility(View.VISIBLE);
         });
     }
-
-
 
     private void addLikedQuotes(Quotation quotation) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
