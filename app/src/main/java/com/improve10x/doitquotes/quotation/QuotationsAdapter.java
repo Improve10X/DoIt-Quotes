@@ -1,5 +1,7 @@
 package com.improve10x.doitquotes.quotation;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +41,7 @@ public class QuotationsAdapter extends RecyclerView.Adapter<QuotationViewHolder>
     public void onBindViewHolder(@NonNull QuotationViewHolder holder, int position) {
       Quotation quotation = quotations.get(position);
       holder.binding.shareBtn.setOnClickListener(view -> {
-          Toast.makeText(view.getContext(), "Shared", Toast.LENGTH_SHORT).show();
+          onItemActionListener.onShareClicked(quotation.imageUrl,quotation.quoteTitle);
       });
       holder.binding.likeBtn.setOnClickListener(view -> {
           onItemActionListener.onLikeClicked(quotation);

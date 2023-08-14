@@ -94,7 +94,13 @@ public class QuotationsActivity extends BaseActivity {
 
             @Override
             public void onLikeClicked(Quotation quotation) {
-               addLikedQuotes(quotation);
+                addLikedQuotes(quotation);
+            }
+
+            @Override
+            public void onShareClicked(String imageUrl, String quotationTitle) {
+                shareContent(imageUrl);
+
             }
         });
     }
@@ -122,5 +128,12 @@ public class QuotationsActivity extends BaseActivity {
                         Toast.makeText(QuotationsActivity.this, "Failed to Add Quotes ", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    private void shareContent(String content) {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("text/Image");
+        shareIntent.putExtra(Intent.EXTRA_TEXT,content);
+        startActivity(Intent.createChooser(shareIntent, "Share via"));
     }
 }
