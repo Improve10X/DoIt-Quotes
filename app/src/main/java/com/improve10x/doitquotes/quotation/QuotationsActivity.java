@@ -98,9 +98,8 @@ public class QuotationsActivity extends BaseActivity {
             }
 
             @Override
-            public void onShareClicked(String imageUrl, String quotationTitle) {
-                shareContent(imageUrl);
-
+            public void onShareClicked(String image) {
+                shareContent(image);
             }
         });
     }
@@ -130,10 +129,16 @@ public class QuotationsActivity extends BaseActivity {
                 });
     }
 
-    private void shareContent(String content) {
-        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+    private void shareContent(String quotation) {
+        /*Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("text/Image");
-        shareIntent.putExtra(Intent.EXTRA_TEXT,content);
-        startActivity(Intent.createChooser(shareIntent, "Share via"));
+        shareIntent.putExtra(Intent.EXTRA_TEXT,quotation);
+        startActivity(Intent.createChooser(shareIntent, "Share via"));*/
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("image/png");
+        intent.putExtra(Intent.EXTRA_STREAM, quotation);
+        intent.putExtra(Intent.EXTRA_TEXT, "This is a playstore link to download.. " + "https://play.google.com/store/apps/details?id=" + getPackageName());
+        startActivity(Intent.createChooser(intent, "Share"));
+
     }
 }

@@ -41,7 +41,7 @@ public class QuotationsAdapter extends RecyclerView.Adapter<QuotationViewHolder>
     public void onBindViewHolder(@NonNull QuotationViewHolder holder, int position) {
       Quotation quotation = quotations.get(position);
       holder.binding.shareBtn.setOnClickListener(view -> {
-          onItemActionListener.onShareClicked(quotation.imageUrl,quotation.quoteTitle);
+          onItemActionListener.onShareClicked(quotation.imageUrl);
       });
       holder.binding.likeBtn.setOnClickListener(view -> {
           onItemActionListener.onLikeClicked(quotation);

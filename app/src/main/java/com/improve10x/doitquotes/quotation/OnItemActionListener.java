@@ -7,5 +7,5 @@ public interface OnItemActionListener {
     void onItemClicked(List<Quotation> quotations,int quotationId);
     void onLikeClicked(Quotation quotation);
 
-    void onShareClicked(String imageUrl, String quotationTitle);
+    void onShareClicked(String image);
 }
